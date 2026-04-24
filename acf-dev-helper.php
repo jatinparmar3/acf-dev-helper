@@ -1,14 +1,15 @@
 <?php
 /**
  * Plugin Name: ACF Dev Helper
- * Plugin URI: https://github.com/jatinparmar3
+ * Plugin URI: https://github.com/jatinparmar3/acf-dev-helper
  * Description: Adds a live code helper panel to ACF field group screens with copy-ready PHP snippets.
  * Version: 1.1.0
- * Author: Jatin Dev 
+ * Author: Jatin Parmar
+ * License: GPL2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: acf-dev-helper
  * Domain Path: /languages
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
