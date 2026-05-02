@@ -1,32 +1,32 @@
 :root {
-    --acf-dev-helper-bg: #f5f7fb;
-    --acf-dev-helper-surface: #ffffff;
-    --acf-dev-helper-surface-2: #f0f4ff;
-    --acf-dev-helper-border: rgba(67, 97, 238, 0.16);
-    --acf-dev-helper-text: #10203a;
-    --acf-dev-helper-muted: #5b6d92;
-    --acf-dev-helper-accent: #0ea5e9;
-    --acf-dev-helper-accent-2: #f97316;
-    --acf-dev-helper-shadow: 0 12px 34px rgba(20, 37, 82, 0.14);
+    --custom-field-helper-bg: #f5f7fb;
+    --custom-field-helper-surface: #ffffff;
+    --custom-field-helper-surface-2: #f0f4ff;
+    --custom-field-helper-border: rgba(67, 97, 238, 0.16);
+    --custom-field-helper-text: #10203a;
+    --custom-field-helper-muted: #5b6d92;
+    --custom-field-helper-accent: #0ea5e9;
+    --custom-field-helper-accent-2: #f97316;
+    --custom-field-helper-shadow: 0 12px 34px rgba(20, 37, 82, 0.14);
 }
 
-#acf-dev-helper .postbox-header h2,
-#acf-dev-helper .hndle {
+#custom-field-helper .postbox-header h2,
+#custom-field-helper .hndle {
     font-weight: 700;
 }
 
-.acf-dev-helper-panel {
-    color: var(--acf-dev-helper-text);
+.custom-field-helper-panel {
+    color: var(--custom-field-helper-text);
     background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.18), transparent 36%), linear-gradient(165deg, #fdfefe 0%, #f3f7ff 58%, #eef3ff 100%);
-    border: 1px solid var(--acf-dev-helper-border);
+    border: 1px solid var(--custom-field-helper-border);
     border-radius: 18px;
     padding: 15px;
-    box-shadow: var(--acf-dev-helper-shadow);
+    box-shadow: var(--custom-field-helper-shadow);
     overflow: hidden;
     backdrop-filter: blur(4px);
 }
 
-.acf-dev-helper-panel__header {
+.custom-field-helper-panel__header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -34,23 +34,23 @@
     margin-bottom: 12px;
 }
 
-.acf-dev-helper-panel__eyebrow {
+.custom-field-helper-panel__eyebrow {
     margin: 0 0 4px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-size: 10px;
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
 }
 
-.acf-dev-helper-panel h2 {
+.custom-field-helper-panel h2 {
     margin: 0;
     font-size: 16px;
     line-height: 1.25;
-    color: var(--acf-dev-helper-text);
+    color: var(--custom-field-helper-text);
     font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
 }
 
-.acf-dev-helper-chip {
+.custom-field-helper-chip {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -58,52 +58,52 @@
     border-radius: 999px;
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.16), rgba(249, 115, 22, 0.16));
     border: 1px solid rgba(14, 165, 233, 0.26);
-    color: var(--acf-dev-helper-text);
+    color: var(--custom-field-helper-text);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
 }
 
-.acf-dev-helper-chip.is-soft {
+.custom-field-helper-chip.is-soft {
     background: rgba(14, 165, 233, 0.1);
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
     font-weight: 600;
 }
 
-.acf-dev-helper-panel__controls {
+.custom-field-helper-panel__controls {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
     margin-bottom: 12px;
 }
 
-.acf-dev-helper-panel__controls--single {
+.custom-field-helper-panel__controls--single {
     grid-template-columns: 1fr;
 }
 
-.acf-dev-helper-control {
+.custom-field-helper-control {
     display: grid;
     gap: 6px;
     font-size: 12px;
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
 }
 
-.acf-dev-helper-control span {
+.custom-field-helper-control span {
     font-weight: 600;
 }
 
-.acf-dev-helper-control select {
+.custom-field-helper-control select {
     width: 100%;
     min-height: 36px;
     padding: 6px 10px;
     border-radius: 10px;
-    border: 1px solid var(--acf-dev-helper-border);
-    background: var(--acf-dev-helper-surface);
-    color: var(--acf-dev-helper-text);
+    border: 1px solid var(--custom-field-helper-border);
+    background: var(--custom-field-helper-surface);
+    color: var(--custom-field-helper-text);
     box-shadow: none;
 }
 
-.acf-dev-helper-meta {
+.custom-field-helper-meta {
     padding: 12px;
     margin-bottom: 12px;
     border-radius: 12px;
@@ -111,26 +111,26 @@
     border: 1px solid rgba(67, 97, 238, 0.16);
 }
 
-.acf-dev-helper-meta__title {
+.custom-field-helper-meta__title {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 8px;
     color: #0f274a;
 }
 
-.acf-dev-helper-meta__stats {
+.custom-field-helper-meta__stats {
     margin-top: 7px;
     font-size: 11px;
     color: #335f92;
 }
 
-.acf-dev-helper-meta__chips {
+.custom-field-helper-meta__chips {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
 
-.acf-dev-helper-fields {
+.custom-field-helper-fields {
     display: grid;
     gap: 8px;
     margin-bottom: 12px;
@@ -139,33 +139,33 @@
     padding-right: 2px;
 }
 
-.acf-dev-helper-field-item {
+.custom-field-helper-field-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     width: 100%;
     padding: 10px 12px;
-    padding-left: calc(12px + var(--acf-dev-helper-indent, 0px));
+    padding-left: calc(12px + var(--custom-field-helper-indent, 0px));
     border: 1px solid rgba(67, 97, 238, 0.14);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.86);
-    color: var(--acf-dev-helper-text);
+    color: var(--custom-field-helper-text);
     text-align: left;
     cursor: pointer;
     transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
-.acf-dev-helper-field-item:hover,
-.acf-dev-helper-field-item:focus-visible,
-.acf-dev-helper-field-item.is-active {
+.custom-field-helper-field-item:hover,
+.custom-field-helper-field-item:focus-visible,
+.custom-field-helper-field-item.is-active {
     transform: translateY(-1px);
     background: rgba(14, 165, 233, 0.12);
     border-color: rgba(14, 165, 233, 0.42);
     outline: none;
 }
 
-.acf-dev-helper-field-item__label {
+.custom-field-helper-field-item__label {
     font-size: 13px;
     font-weight: 600;
     line-height: 1.3;
@@ -174,15 +174,15 @@
     word-break: break-word;
 }
 
-.acf-dev-helper-field-item__type {
+.custom-field-helper-field-item__type {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
     white-space: nowrap;
 }
 
-.acf-dev-helper-row-actions {
+.custom-field-helper-row-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -191,7 +191,7 @@
     align-items: center;
 }
 
-.acf-dev-helper-row-button {
+.custom-field-helper-row-button {
     border: 1px solid rgba(67, 97, 238, 0.28);
     border-radius: 999px;
     background: #fff;
@@ -204,15 +204,15 @@
     white-space: nowrap;
 }
 
-.acf-dev-helper-row-button:hover,
-.acf-dev-helper-row-button:focus-visible {
+.custom-field-helper-row-button:hover,
+.custom-field-helper-row-button:focus-visible {
     border-color: rgba(14, 165, 233, 0.6);
     background: rgba(14, 165, 233, 0.12);
     color: #0c2a53;
     outline: none;
 }
 
-.acf-dev-helper-modal {
+.custom-field-helper-modal {
     position: fixed;
     inset: 0;
     z-index: 99999;
@@ -221,11 +221,11 @@
     padding: 32px 14px;
 }
 
-.acf-dev-helper-modal.is-open {
+.custom-field-helper-modal.is-open {
     display: block;
 }
 
-.acf-dev-helper-modal__box {
+.custom-field-helper-modal__box {
     width: min(920px, 100%);
     max-height: calc(100vh - 64px);
     margin: 0 auto;
@@ -236,7 +236,7 @@
     box-shadow: 0 24px 72px rgba(2, 6, 23, 0.45);
 }
 
-.acf-dev-helper-modal__header {
+.custom-field-helper-modal__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -246,7 +246,7 @@
     border-bottom: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-.acf-dev-helper-modal__close {
+.custom-field-helper-modal__close {
     border: 1px solid rgba(148, 163, 184, 0.35);
     background: transparent;
     color: #cbd5e1;
@@ -256,14 +256,14 @@
     cursor: pointer;
 }
 
-.acf-dev-helper-modal__close:hover,
-.acf-dev-helper-modal__close:focus-visible {
+.custom-field-helper-modal__close:hover,
+.custom-field-helper-modal__close:focus-visible {
     border-color: rgba(14, 165, 233, 0.65);
     color: #e2e8f0;
     outline: none;
 }
 
-.acf-dev-helper-modal__code {
+.custom-field-helper-modal__code {
     margin: 0;
     padding: 14px;
     overflow: auto;
@@ -274,16 +274,16 @@
     font-family: Consolas, Monaco, 'Liberation Mono', monospace;
 }
 
-.acf-dev-helper-empty {
+.custom-field-helper-empty {
     padding: 12px;
     border-radius: 12px;
     border: 1px dashed rgba(67, 97, 238, 0.25);
     background: rgba(255, 255, 255, 0.75);
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
     font-size: 12px;
 }
 
-.acf-dev-helper-code-shell {
+.custom-field-helper-code-shell {
     border-radius: 14px;
     border: 1px solid rgba(15, 23, 42, 0.14);
     overflow: hidden;
@@ -291,7 +291,7 @@
     background: #0a1630;
 }
 
-.acf-dev-helper-code {
+.custom-field-helper-code {
     margin: 0;
     padding: 14px;
     font-size: 12px;
@@ -305,38 +305,38 @@
     overflow: visible;
 }
 
-.acf-dev-helper-actions {
+.custom-field-helper-actions {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 8px;
 }
 
-.acf-dev-helper-actions .button {
+.custom-field-helper-actions .button {
     border-radius: 10px;
     box-shadow: none;
     min-height: 36px;
     padding-inline: 12px;
 }
 
-.acf-dev-helper-actions .button-primary {
+.custom-field-helper-actions .button-primary {
     background: linear-gradient(135deg, #0284c7, #0ea5e9);
     border-color: rgba(2, 132, 199, 0.34);
     text-shadow: none;
 }
 
-.acf-dev-helper-note {
+.custom-field-helper-note {
     margin: 0;
     font-size: 11px;
     line-height: 1.5;
-    color: var(--acf-dev-helper-muted);
+    color: var(--custom-field-helper-muted);
 }
 
 @media (max-width: 782px) {
-    .acf-dev-helper-panel__controls {
+    .custom-field-helper-panel__controls {
         grid-template-columns: 1fr;
     }
-    .acf-dev-helper-field-item {
+    .custom-field-helper-field-item {
         padding-left: 12px;
     }
 }

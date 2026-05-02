@@ -1,4 +1,4 @@
-=== ACF Dev Helper ===
+=== Custom Field Helper ===
 Contributors: jatinparmar
 Tags: acf, advanced custom fields, code generator, snippet, developer tools
 Requires at least: 6.0
@@ -7,11 +7,11 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-ACF Dev Helper adds a live PHP snippet generator to the ACF field group editor.
+Custom Field Helper adds a live PHP snippet generator to the ACF field group editor.
 
 == Description ==
 
-ACF Dev Helper is a developer-friendly tool that generates ready-to-use PHP code snippets directly inside the Advanced Custom Fields (ACF) field group editor.
+Custom Field Helper is a developer-friendly tool that generates ready-to-use PHP code snippets directly inside the Advanced Custom Fields (ACF) field group editor.
 
 It helps developers quickly copy working code for any ACF field without manually writing get_field(), get_sub_field(), repeater loops, or flexible content logic.
 
@@ -34,7 +34,7 @@ It helps developers quickly copy working code for any ACF field without manually
 
 == Installation ==
 
-1. Upload the `acf-dev-helper` folder to the `/wp-content/plugins/` directory.
+1. Upload the `custom-field-helper` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Open any ACF Field Group and use the Code Helper panel.
 
