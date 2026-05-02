@@ -9,16 +9,16 @@
     };
 
     const selectors = {
-        panel: '#acf-dev-helper-panel',
-        code: '[data-acf-dev-helper-code]',
-        meta: '[data-acf-dev-helper-meta]',
-        fields: '[data-acf-dev-helper-fields]',
-        template: '[data-acf-dev-helper-setting="template"]',
-        look: '[data-acf-dev-helper-setting="look"]',
-        copy: '[data-acf-dev-helper-copy]',
-        refresh: '[data-acf-dev-helper-refresh]',
-        item: '.acf-dev-helper-field-item',
-        rowAction: '[data-acf-dev-helper-row-action]',
+        panel: '#custom-field-helper-panel',
+        code: '[data-custom-field-helper-code]',
+        meta: '[data-custom-field-helper-meta]',
+        fields: '[data-custom-field-helper-fields]',
+        template: '[data-custom-field-helper-setting="template"]',
+        look: '[data-custom-field-helper-setting="look"]',
+        copy: '[data-custom-field-helper-copy]',
+        refresh: '[data-custom-field-helper-refresh]',
+        item: '.custom-field-helper-field-item',
+        rowAction: '[data-custom-field-helper-row-action]',
     };
 
     const fieldRowSelector = '.acf-field-object, .acf-field[data-type], tr.acf-field[data-type], tr.acf-row[data-id]';
@@ -48,7 +48,7 @@
     }
 
     function control(name) {
-        return qs('[data-acf-dev-helper-setting="' + name + '"]');
+        return qs('[data-custom-field-helper-setting="' + name + '"]');
     }
 
     function getLocalizedSettings() {
@@ -59,11 +59,11 @@
             enableParserDebug: false,
         };
 
-        if (!window.acfDevHelperData || !acfDevHelperData.settings) {
+        if (!window.customFieldHelperData || !customFieldHelperData.settings) {
             return defaults;
         }
 
-        return Object.assign({}, defaults, acfDevHelperData.settings);
+        return Object.assign({}, defaults, customFieldHelperData.settings);
     }
 
     function getBuilderRoot() {
@@ -227,7 +227,7 @@
             return esc(line);
         }).join('<br>');
 
-        return '<div class="acf-dev-helper-meta__stats"><strong>Parser debug</strong><br>' + lines + '</div>';
+        return '<div class="custom-field-helper-meta__stats"><strong>Parser debug</strong><br>' + lines + '</div>';
     }
 
     function normalizeReturnFormat(value, fallback) {
@@ -1262,7 +1262,7 @@
             '.layout[data-id]',
             'li.acf-layout',
             'li.layout',
-            '[data-layout]:not([data-acf-dev-helper-code])',
+            '[data-layout]:not([data-custom-field-helper-code])',
         ];
 
         roots.forEach(function(root) {
@@ -2120,23 +2120,23 @@
         }
 
         const chips = [
-            '<span class="acf-dev-helper-chip is-soft">' + esc(data.type) + '</span>',
+            '<span class="custom-field-helper-chip is-soft">' + esc(data.type) + '</span>',
         ];
 
         if (data.name) {
-            chips.push('<span class="acf-dev-helper-chip is-soft">' + esc(data.name) + '</span>');
+            chips.push('<span class="custom-field-helper-chip is-soft">' + esc(data.name) + '</span>');
         }
 
         if (data.key) {
-            chips.push('<span class="acf-dev-helper-chip is-soft">' + esc(data.key) + '</span>');
+            chips.push('<span class="custom-field-helper-chip is-soft">' + esc(data.key) + '</span>');
         }
 
         const nestedStats = getNestedStats(data);
-        const statsHtml = nestedStats ? '<div class="acf-dev-helper-meta__stats">' + esc(nestedStats) + '</div>' : '';
+        const statsHtml = nestedStats ? '<div class="custom-field-helper-meta__stats">' + esc(nestedStats) + '</div>' : '';
         const debugHtml = parserDebugHtml();
         const displayTitle = data.name && isValidFieldName(data.name) ? data.name : data.label;
 
-        meta.innerHTML = '<div class="acf-dev-helper-meta__title">' + esc(displayTitle) + '</div><div class="acf-dev-helper-meta__chips">' + chips.join('') + '</div>' + statsHtml + debugHtml;
+        meta.innerHTML = '<div class="custom-field-helper-meta__title">' + esc(displayTitle) + '</div><div class="custom-field-helper-meta__chips">' + chips.join('') + '</div>' + statsHtml + debugHtml;
     }
 
     function renderCode(data) {
@@ -2157,7 +2157,7 @@
             item.classList.remove('is-active');
         });
 
-        const active = qs('[data-acf-dev-helper-field-id="' + esc(fieldId(data)) + '"]');
+        const active = qs('[data-custom-field-helper-field-id="' + esc(fieldId(data)) + '"]');
         if (active) {
             active.classList.add('is-active');
         }
@@ -2204,14 +2204,14 @@
         state.lastSignature = signature;
 
         if (!fields.length) {
-            list.innerHTML = '<div class="acf-dev-helper-empty">' + esc((window.acfDevHelperData && acfDevHelperData.noField) || 'No fields found.') + '</div>';
+            list.innerHTML = '<div class="custom-field-helper-empty">' + esc((window.customFieldHelperData && customFieldHelperData.noField) || 'No fields found.') + '</div>';
             return;
         }
 
         list.innerHTML = fields.map(function(data) {
             const indent = Math.min(data.depth, 4) * 12;
             const display = data.name || data.label;
-            return '<button type="button" class="acf-dev-helper-field-item" data-acf-dev-helper-field-id="' + esc(fieldId(data)) + '" style="--acf-dev-helper-indent:' + indent + 'px"><span class="acf-dev-helper-field-item__label">' + esc(display) + '</span><span class="acf-dev-helper-field-item__type">' + esc(data.type) + '</span></button>';
+            return '<button type="button" class="custom-field-helper-field-item" data-custom-field-helper-field-id="' + esc(fieldId(data)) + '" style="--custom-field-helper-indent:' + indent + 'px"><span class="custom-field-helper-field-item__label">' + esc(display) + '</span><span class="custom-field-helper-field-item__type">' + esc(data.type) + '</span></button>';
         }).join('');
 
         if (state.activeField && document.body.contains(state.activeField)) {
@@ -2277,15 +2277,15 @@
     function createRowActionButton(action, label) {
         const button = document.createElement('button');
         button.type = 'button';
-        button.className = 'acf-dev-helper-row-button';
-        button.setAttribute('data-acf-dev-helper-row-action', action);
+        button.className = 'custom-field-helper-row-button';
+        button.setAttribute('data-custom-field-helper-row-action', action);
         button.textContent = label;
         return button;
     }
 
     function renderRowActions(fields) {
         const rows = getFieldRows(getBuilderRoot());
-        const labels = window.acfDevHelperData || {};
+        const labels = window.customFieldHelperData || {};
         const byId = new Map((fields || state.fields || []).map(function(data) {
             return [fieldId(data), data];
         }));
@@ -2293,9 +2293,9 @@
         rows.forEach(function(row) {
             const data = byId.get(fieldId(getFieldData(row))) || getFieldData(row);
             const host = getRowActionHost(row);
-            let wrapper = host ? qs('.acf-dev-helper-row-actions', host) : null;
+            let wrapper = host ? qs('.custom-field-helper-row-actions', host) : null;
 
-            qsa('.acf-dev-helper-row-actions', row).forEach(function(node) {
+            qsa('.custom-field-helper-row-actions', row).forEach(function(node) {
                 if (node.parentElement !== host) {
                     node.remove();
                 }
@@ -2317,13 +2317,13 @@
 
             if (!wrapper) {
                 wrapper = document.createElement('div');
-                wrapper.className = 'acf-dev-helper-row-actions';
+                wrapper.className = 'custom-field-helper-row-actions';
                 wrapper.appendChild(createRowActionButton('view', labels.viewLabel || 'View code'));
                 wrapper.appendChild(createRowActionButton('copy', labels.copyRowLabel || 'Copy code'));
                 host.appendChild(wrapper);
             }
 
-            wrapper.setAttribute('data-acf-dev-helper-field-id', fieldId(data));
+            wrapper.setAttribute('data-custom-field-helper-field-id', fieldId(data));
         });
     }
 
@@ -2374,26 +2374,26 @@
 
     function flashCopyState() {
         const button = qs(selectors.copy);
-        flashButtonState(button, (window.acfDevHelperData && acfDevHelperData.copiedLabel) || 'Copied');
+        flashButtonState(button, (window.customFieldHelperData && customFieldHelperData.copiedLabel) || 'Copied');
     }
 
     function ensureModal() {
-        let modal = qs('#acf-dev-helper-modal');
+        let modal = qs('#custom-field-helper-modal');
         if (modal) {
             return modal;
         }
 
-        const labels = window.acfDevHelperData || {};
+        const labels = window.customFieldHelperData || {};
         modal = document.createElement('div');
-        modal.id = 'acf-dev-helper-modal';
-        modal.className = 'acf-dev-helper-modal';
+        modal.id = 'custom-field-helper-modal';
+        modal.className = 'custom-field-helper-modal';
         modal.innerHTML = [
-            '<div class="acf-dev-helper-modal__box" role="dialog" aria-modal="true" aria-label="ACF code preview">',
-            '  <div class="acf-dev-helper-modal__header">',
+            '<div class="custom-field-helper-modal__box" role="dialog" aria-modal="true" aria-label="Custom Field code preview">',
+            '  <div class="custom-field-helper-modal__header">',
             '    <strong>' + esc(labels.viewLabel || 'View code') + '</strong>',
-            '    <button type="button" class="acf-dev-helper-modal__close" data-acf-dev-helper-modal-close>' + esc(labels.closeLabel || 'Close') + '</button>',
+            '    <button type="button" class="custom-field-helper-modal__close" data-custom-field-helper-modal-close>' + esc(labels.closeLabel || 'Close') + '</button>',
             '  </div>',
-            '  <pre class="acf-dev-helper-modal__code"><code data-acf-dev-helper-modal-code></code></pre>',
+            '  <pre class="custom-field-helper-modal__code"><code data-custom-field-helper-modal-code></code></pre>',
             '</div>'
         ].join('');
 
@@ -2403,22 +2403,22 @@
 
     function openCodeModal(code) {
         const modal = ensureModal();
-        const codeEl = qs('[data-acf-dev-helper-modal-code]', modal);
+        const codeEl = qs('[data-custom-field-helper-modal-code]', modal);
         if (codeEl) {
             codeEl.textContent = code || '';
         }
         modal.classList.add('is-open');
-        document.body.classList.add('acf-dev-helper-modal-open');
+        document.body.classList.add('custom-field-helper-modal-open');
     }
 
     function closeCodeModal() {
-        const modal = qs('#acf-dev-helper-modal');
+        const modal = qs('#custom-field-helper-modal');
         if (!modal) {
             return;
         }
 
         modal.classList.remove('is-open');
-        document.body.classList.remove('acf-dev-helper-modal-open');
+        document.body.classList.remove('custom-field-helper-modal-open');
     }
 
     function bindEvents() {
@@ -2431,7 +2431,7 @@
 
             const rowActionButton = event.target.closest(selectors.rowAction);
             if (rowActionButton) {
-                const action = rowActionButton.getAttribute('data-acf-dev-helper-row-action');
+                const action = rowActionButton.getAttribute('data-custom-field-helper-row-action');
                 const field = findFieldContainer(rowActionButton);
                 const data = field ? getFieldData(field) : null;
 
@@ -2449,7 +2449,7 @@
                 if (action === 'copy') {
                     const code = buildSnippet(data, getSettings());
                     copyText(code).then(function() {
-                        flashButtonState(rowActionButton, (window.acfDevHelperData && acfDevHelperData.copiedLabel) || 'Copied');
+                        flashButtonState(rowActionButton, (window.customFieldHelperData && customFieldHelperData.copiedLabel) || 'Copied');
                     });
                     return;
                 }
@@ -2467,7 +2467,7 @@
             const item = event.target.closest(selectors.item);
             if (item) {
                 const match = state.fields.find(function(data) {
-                    return fieldId(data) === item.getAttribute('data-acf-dev-helper-field-id');
+                    return fieldId(data) === item.getAttribute('data-custom-field-helper-field-id');
                 });
 
                 if (match) {
@@ -2481,12 +2481,12 @@
                 renderActiveField(field);
             }
 
-            if (event.target.closest('[data-acf-dev-helper-modal-close]')) {
+            if (event.target.closest('[data-custom-field-helper-modal-close]')) {
                 closeCodeModal();
                 return;
             }
 
-            if (event.target.classList && event.target.classList.contains('acf-dev-helper-modal')) {
+            if (event.target.classList && event.target.classList.contains('custom-field-helper-modal')) {
                 closeCodeModal();
             }
         });

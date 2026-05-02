@@ -4,9 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class ACF_Dev_Helper {
+class Custom_Field_Helper {
 	private static $instance = null;
-	private $option_name      = 'acf_dev_helper_options';
+	private $option_name      = 'cfhelper_options';
 
 	public static function init() {
 		if ( null === self::$instance ) {
@@ -21,7 +21,7 @@ class ACF_Dev_Helper {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_filter( 'plugin_action_links_' . ACF_DEV_HELPER_BASENAME, array( $this, 'add_plugin_action_links' ) );
+		add_filter( 'plugin_action_links_' . CFHELPER_BASENAME, array( $this, 'add_plugin_action_links' ) );
 	}
 
 	public function register_metabox() {
@@ -30,8 +30,8 @@ class ACF_Dev_Helper {
 		}
 
 		add_meta_box(
-			'acf-dev-helper',
-			__( 'ACF Code Helper', 'acf-dev-helper' ),
+			'custom-field-helper',
+			__( 'Custom Field Helper', 'custom-field-helper' ),
 			array( $this, 'render_metabox' ),
 			'acf-field-group',
 			'side',
@@ -46,36 +46,36 @@ class ACF_Dev_Helper {
 
 		$settings = $this->get_settings();
 
-		$css_file    = ACF_DEV_HELPER_PATH . 'assets/admin.css';
-		$js_file     = ACF_DEV_HELPER_PATH . 'assets/admin.js';
-		$css_version = file_exists( $css_file ) ? (string) filemtime( $css_file ) : ACF_DEV_HELPER_VERSION;
-		$js_version  = file_exists( $js_file ) ? (string) filemtime( $js_file ) : ACF_DEV_HELPER_VERSION;
+		$css_file    = CFHELPER_PATH . 'assets/admin.css';
+		$js_file     = CFHELPER_PATH . 'assets/admin.js';
+		$css_version = file_exists( $css_file ) ? (string) filemtime( $css_file ) : CFHELPER_VERSION;
+		$js_version  = file_exists( $js_file ) ? (string) filemtime( $js_file ) : CFHELPER_VERSION;
 
 		wp_enqueue_style(
-			'acf-dev-helper-admin',
-			ACF_DEV_HELPER_URL . 'assets/admin.css',
+			'custom-field-helper-admin',
+			CFHELPER_URL . 'assets/admin.css',
 			array(),
 			$css_version
 		);
 
 		wp_enqueue_script(
-			'acf-dev-helper-admin',
-			ACF_DEV_HELPER_URL . 'assets/admin.js',
+			'custom-field-helper-admin',
+			CFHELPER_URL . 'assets/admin.js',
 			array(),
 			$js_version,
 			true
 		);
 
 		wp_localize_script(
-			'acf-dev-helper-admin',
-			'acfDevHelperData',
+			'custom-field-helper-admin',
+			'customFieldHelperData',
 			array(
-				'copyLabel'    => __( 'Copy code', 'acf-dev-helper' ),
-				'copiedLabel'  => __( 'Copied', 'acf-dev-helper' ),
-				'viewLabel'    => __( 'View code', 'acf-dev-helper' ),
-				'copyRowLabel' => __( 'Copy code', 'acf-dev-helper' ),
-				'closeLabel'   => __( 'Close', 'acf-dev-helper' ),
-				'noField'      => __( 'Select a field in the builder to generate a snippet.', 'acf-dev-helper' ),
+				'copyLabel'    => __( 'Copy code', 'custom-field-helper' ),
+				'copiedLabel'  => __( 'Copied', 'custom-field-helper' ),
+				'viewLabel'    => __( 'View code', 'custom-field-helper' ),
+				'copyRowLabel' => __( 'Copy code', 'custom-field-helper' ),
+				'closeLabel'   => __( 'Close', 'custom-field-helper' ),
+				'noField'      => __( 'Select a field in the builder to generate a snippet.', 'custom-field-helper' ),
 				'settings'     => array(
 					'defaultTemplate'          => $settings['default_template'],
 					'enableNestedPlaceholders' => ! empty( $settings['enable_nested_placeholders'] ),
@@ -89,39 +89,39 @@ class ACF_Dev_Helper {
 	public function render_metabox() {
 		$settings = $this->get_settings();
 		?>
-		<div class="acf-dev-helper-panel" id="acf-dev-helper-panel">
-			<div class="acf-dev-helper-panel__header">
+		<div class="custom-field-helper-panel" id="custom-field-helper-panel">
+			<div class="custom-field-helper-panel__header">
 				<div>
-					<p class="acf-dev-helper-panel__eyebrow"><?php esc_html_e( 'Row actions enabled', 'acf-dev-helper' ); ?></p>
-					<h2><?php esc_html_e( 'Per-field code actions', 'acf-dev-helper' ); ?></h2>
+					<p class="custom-field-helper-panel__eyebrow"><?php esc_html_e( 'Row actions enabled', 'custom-field-helper' ); ?></p>
+					<h2><?php esc_html_e( 'Per-field code actions', 'custom-field-helper' ); ?></h2>
 				</div>
-				<span class="acf-dev-helper-chip"><?php esc_html_e( 'PHP', 'acf-dev-helper' ); ?></span>
+				<span class="custom-field-helper-chip"><?php esc_html_e( 'PHP', 'custom-field-helper' ); ?></span>
 			</div>
 
-			<div class="acf-dev-helper-panel__controls acf-dev-helper-panel__controls--single">
-				<label class="acf-dev-helper-control">
-					<span><?php esc_html_e( 'Code template', 'acf-dev-helper' ); ?></span>
-					<select data-acf-dev-helper-setting="template">
-						<option value="php" <?php selected( $settings['default_template'], 'php' ); ?>><?php esc_html_e( 'PHP', 'acf-dev-helper' ); ?></option>
-						<option value="html" <?php selected( $settings['default_template'], 'html' ); ?>><?php esc_html_e( 'HTML + PHP', 'acf-dev-helper' ); ?></option>
+			<div class="custom-field-helper-panel__controls custom-field-helper-panel__controls--single">
+				<label class="custom-field-helper-control">
+					<span><?php esc_html_e( 'Code template', 'custom-field-helper' ); ?></span>
+					<select data-custom-field-helper-setting="template">
+						<option value="php" <?php selected( $settings['default_template'], 'php' ); ?>><?php esc_html_e( 'PHP', 'custom-field-helper' ); ?></option>
+						<option value="html" <?php selected( $settings['default_template'], 'html' ); ?>><?php esc_html_e( 'HTML + PHP', 'custom-field-helper' ); ?></option>
 					</select>
 				</label>
 			</div>
 
-			<div class="acf-dev-helper-meta" data-acf-dev-helper-meta>
-				<p><?php esc_html_e( 'Every field row now has View code and Copy code buttons.', 'acf-dev-helper' ); ?></p>
+			<div class="custom-field-helper-meta" data-custom-field-helper-meta>
+				<p><?php esc_html_e( 'Every field row now has View code and Copy code buttons.', 'custom-field-helper' ); ?></p>
 			</div>
 
-			<div class="acf-dev-helper-actions">
-				<button type="button" class="button button-primary" data-acf-dev-helper-copy><?php esc_html_e( 'Copy code', 'acf-dev-helper' ); ?></button>
+			<div class="custom-field-helper-actions">
+				<button type="button" class="button button-primary" data-custom-field-helper-copy><?php esc_html_e( 'Copy code', 'custom-field-helper' ); ?></button>
 			</div>
 
-			<div class="acf-dev-helper-code-shell">
-				<pre class="acf-dev-helper-code"><code data-acf-dev-helper-code><?php echo esc_html( $this->get_placeholder_code() ); ?></code></pre>
+			<div class="custom-field-helper-code-shell">
+				<pre class="custom-field-helper-code"><code data-custom-field-helper-code><?php echo esc_html( $this->get_placeholder_code() ); ?></code></pre>
 			</div>
 
-			<p class="acf-dev-helper-note">
-				<?php esc_html_e( 'Tip: choose template once, then copy directly from each field row.', 'acf-dev-helper' ); ?>
+			<p class="custom-field-helper-note">
+				<?php esc_html_e( 'Tip: choose template once, then copy directly from each field row.', 'custom-field-helper' ); ?>
 			</p>
 		</div>
 		<?php
@@ -133,58 +133,58 @@ class ACF_Dev_Helper {
 
 	public function register_settings_page() {
 		add_options_page(
-			__( 'ACF Dev Helper', 'acf-dev-helper' ),
-			__( 'ACF Dev Helper', 'acf-dev-helper' ),
+			__( 'Custom Field Helper', 'custom-field-helper' ),
+			__( 'Custom Field Helper', 'custom-field-helper' ),
 			'manage_options',
-			'acf-dev-helper-settings',
+			'custom-field-helper-settings',
 			array( $this, 'render_settings_page' )
 		);
 	}
 
 	public function register_settings() {
 		register_setting(
-			'acf_dev_helper_settings',
+			'cfhelper_settings',
 			$this->option_name,
 			array( $this, 'sanitize_settings' )
 		);
 
 		add_settings_section(
-			'acf_dev_helper_general',
-			__( 'General Settings', 'acf-dev-helper' ),
+			'cfhelper_general',
+			__( 'General Settings', 'custom-field-helper' ),
 			array( $this, 'render_general_section' ),
-			'acf-dev-helper-settings'
+			'custom-field-helper-settings'
 		);
 
 		add_settings_field(
 			'default_template',
-			__( 'Default code template', 'acf-dev-helper' ),
+			__( 'Default code template', 'custom-field-helper' ),
 			array( $this, 'render_default_template_field' ),
-			'acf-dev-helper-settings',
-			'acf_dev_helper_general'
+			'custom-field-helper-settings',
+			'cfhelper_general'
 		);
 
 		add_settings_field(
 			'enable_nested_placeholders',
-			__( 'Nested field placeholders', 'acf-dev-helper' ),
+			__( 'Nested field placeholders', 'custom-field-helper' ),
 			array( $this, 'render_nested_placeholders_field' ),
-			'acf-dev-helper-settings',
-			'acf_dev_helper_general'
+			'custom-field-helper-settings',
+			'cfhelper_general'
 		);
 
 		add_settings_field(
 			'media_return_format',
-			__( 'Media return format handling', 'acf-dev-helper' ),
+			__( 'Media return format handling', 'custom-field-helper' ),
 			array( $this, 'render_media_return_format_field' ),
-			'acf-dev-helper-settings',
-			'acf_dev_helper_general'
+			'custom-field-helper-settings',
+			'cfhelper_general'
 		);
 
 		add_settings_field(
 			'enable_parser_debug',
-			__( 'Parser debug mode', 'acf-dev-helper' ),
+			__( 'Parser debug mode', 'custom-field-helper' ),
 			array( $this, 'render_parser_debug_field' ),
-			'acf-dev-helper-settings',
-			'acf_dev_helper_general'
+			'custom-field-helper-settings',
+			'cfhelper_general'
 		);
 	}
 
@@ -211,15 +211,15 @@ class ACF_Dev_Helper {
 	}
 
 	public function render_general_section() {
-		echo '<p>' . esc_html__( 'Control default snippet behavior for the ACF code helper panel.', 'acf-dev-helper' ) . '</p>';
+		echo '<p>' . esc_html__( 'Control default snippet behavior for the Custom field helper panel.', 'custom-field-helper' ) . '</p>';
 	}
 
 	public function render_default_template_field() {
 		$settings = $this->get_settings();
 		?>
 		<select name="<?php echo esc_attr( $this->option_name ); ?>[default_template]">
-			<option value="php" <?php selected( $settings['default_template'], 'php' ); ?>><?php esc_html_e( 'PHP', 'acf-dev-helper' ); ?></option>
-			<option value="html" <?php selected( $settings['default_template'], 'html' ); ?>><?php esc_html_e( 'HTML + PHP', 'acf-dev-helper' ); ?></option>
+			<option value="php" <?php selected( $settings['default_template'], 'php' ); ?>><?php esc_html_e( 'PHP', 'custom-field-helper' ); ?></option>
+			<option value="html" <?php selected( $settings['default_template'], 'html' ); ?>><?php esc_html_e( 'HTML + PHP', 'custom-field-helper' ); ?></option>
 		</select>
 		<?php
 	}
@@ -229,7 +229,7 @@ class ACF_Dev_Helper {
 		?>
 		<label>
 			<input type="checkbox" name="<?php echo esc_attr( $this->option_name ); ?>[enable_nested_placeholders]" value="1" <?php checked( ! empty( $settings['enable_nested_placeholders'] ) ); ?> />
-			<?php esc_html_e( 'Show structured placeholder blocks for nested repeater/flexible fields.', 'acf-dev-helper' ); ?>
+			<?php esc_html_e( 'Show structured placeholder blocks for nested repeater/flexible fields.', 'custom-field-helper' ); ?>
 		</label>
 		<?php
 	}
@@ -238,12 +238,12 @@ class ACF_Dev_Helper {
 		$settings = $this->get_settings();
 		?>
 		<select name="<?php echo esc_attr( $this->option_name ); ?>[media_return_format]">
-			<option value="auto" <?php selected( $settings['media_return_format'], 'auto' ); ?>><?php esc_html_e( 'Auto (use field setting)', 'acf-dev-helper' ); ?></option>
-			<option value="id" <?php selected( $settings['media_return_format'], 'id' ); ?>><?php esc_html_e( 'Force ID', 'acf-dev-helper' ); ?></option>
-			<option value="array" <?php selected( $settings['media_return_format'], 'array' ); ?>><?php esc_html_e( 'Force Array', 'acf-dev-helper' ); ?></option>
-			<option value="url" <?php selected( $settings['media_return_format'], 'url' ); ?>><?php esc_html_e( 'Force URL', 'acf-dev-helper' ); ?></option>
+			<option value="auto" <?php selected( $settings['media_return_format'], 'auto' ); ?>><?php esc_html_e( 'Auto (use field setting)', 'custom-field-helper' ); ?></option>
+			<option value="id" <?php selected( $settings['media_return_format'], 'id' ); ?>><?php esc_html_e( 'Force ID', 'custom-field-helper' ); ?></option>
+			<option value="array" <?php selected( $settings['media_return_format'], 'array' ); ?>><?php esc_html_e( 'Force Array', 'custom-field-helper' ); ?></option>
+			<option value="url" <?php selected( $settings['media_return_format'], 'url' ); ?>><?php esc_html_e( 'Force URL', 'custom-field-helper' ); ?></option>
 		</select>
-		<p class="description"><?php esc_html_e( 'Applies to Image and File snippet output in the helper.', 'acf-dev-helper' ); ?></p>
+		<p class="description"><?php esc_html_e( 'Applies to Image and File snippet output in the helper.', 'custom-field-helper' ); ?></p>
 		<?php
 	}
 
@@ -252,7 +252,7 @@ class ACF_Dev_Helper {
 		?>
 		<label>
 			<input type="checkbox" name="<?php echo esc_attr( $this->option_name ); ?>[enable_parser_debug]" value="1" <?php checked( ! empty( $settings['enable_parser_debug'] ) ); ?> />
-			<?php esc_html_e( 'Show parser debug lines in helper panel (layouts + input paths).', 'acf-dev-helper' ); ?>
+			<?php esc_html_e( 'Show parser debug lines in helper panel (layouts + input paths).', 'custom-field-helper' ); ?>
 		</label>
 		<?php
 	}
@@ -263,11 +263,11 @@ class ACF_Dev_Helper {
 		}
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'ACF Dev Helper Settings', 'acf-dev-helper' ); ?></h1>
+			<h1><?php esc_html_e( 'Custom Field Helper Settings', 'custom-field-helper' ); ?></h1>
 			<form action="options.php" method="post">
 				<?php
-				settings_fields( 'acf_dev_helper_settings' );
-				do_settings_sections( 'acf-dev-helper-settings' );
+				settings_fields( 'cfhelper_settings' );
+				do_settings_sections( 'custom-field-helper-settings' );
 				submit_button();
 				?>
 			</form>
@@ -276,7 +276,7 @@ class ACF_Dev_Helper {
 	}
 
 	public function add_plugin_action_links( $links ) {
-		$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=acf-dev-helper-settings' ) ) . '">' . esc_html__( 'Settings', 'acf-dev-helper' ) . '</a>';
+		$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=custom-field-helper-settings' ) ) . '">' . esc_html__( 'Settings', 'custom-field-helper' ) . '</a>';
 		array_unshift( $links, $settings_link );
 
 		return $links;
