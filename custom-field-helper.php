@@ -43,7 +43,7 @@ register_deactivation_hook( CFHELPER_FILE, 'cfhelper_deactivate' );
 
 require_once CFHELPER_PATH . 'includes/class-custom-field-helper.php';
 
-if ( class_exists( 'Custom_Field_Helper' ) ) {
-	add_action( 'plugins_loaded', array( 'Custom_Field_Helper', 'init' ) );
+if ( class_exists( 'CFHelper_Plugin' ) ) {
+	add_action( 'plugins_loaded', array( 'CFHelper_Plugin', 'init' ) );
 }
 

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Custom_Field_Helper {
+class CFHelper_Plugin {
 	private static $instance = null;
 	private $option_name      = 'cfhelper_options';
 
